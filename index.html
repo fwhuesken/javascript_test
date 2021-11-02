@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html>
+    <body>
+    <body>
+      <button id="click">Click</button>
+      <table id="myTable">
+<thead>
+  <tr>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Sector</th>
+    <th>Index weight</th>
+    <th>Custom ETF weight</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>MMM</td>
+    <td>3M Company</td>
+    <td>Industrials</td>
+    <td>0.27923</td>
+    <td>12.81</td>
+  </tr>
+  <tr>
+    <td>AOS</td>
+    <td>A. O. Smith Corporation</td>
+    <td>Industrials</td>
+    <td>0.023004</td>
+    <td>1.06</td>
+  </tr>
+  <tr>
+    <td>ABMD</td>
+    <td>ABIOMED Inc.</td>
+    <td>Health Care</td>
+    <td>0.041127</td>
+    <td>1.89</td>
+  </tr>
+  <tr>
+    <td>AES</td>
+    <td>AES Corporation</td>
+    <td>Utilities</td>
+    <td>0.042265</td>
+    <td>1.94</td>
+  </tr>
+  <tr>
+    <td>AME</td>
+    <td>AMETEK Inc.</td>
+    <td>Industrials</td>
+    <td>0.078652</td>
+    <td>3.61</td>
+  </tr>
+  <tr>
+    <td>ANSS</td>
+    <td>ANSYS Inc.</td>
+    <td>Information Technology</td>
+    <td>0.080654</td>
+    <td>3.70</td>
+  </tr>
+  <tr>
+    <td>APA</td>
+    <td>APA Corp.</td>
+    <td>Energy</td>
+    <td>0.022934</td>
+    <td>1.05</td>
+  </tr>
+  <tr>
+    <td>T</td>
+    <td>AT&amp;T Inc.</td>
+    <td>Communication Services</td>
+    <td>0.529773</td>
+    <td>24.30</td>
+  </tr>
+  <tr>
+    <td>ABBV</td>
+    <td>AbbVie Inc.</td>
+    <td>Health Care</td>
+    <td>0.525005</td>
+    <td>24.08</td>
+  </tr>
+  <tr>
+    <td>ABT</td>
+    <td>Abbott Laboratories</td>
+    <td>Health Care</td>
+    <td>0.557323</td>
+    <td>25.57</td>
+  </tr>
+</tbody>
+</table>
+
+
+    </body>
+
+    <script>
+      const btn = document.getElementById("click");
+      btn.addEventListener("click", function () {
+        tableToJson(table);
+      })
+      
+    let table = document.getElementById("myTable");
+    function tableToJson(table) {
+    var data = [];
+
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+
+    // go through cells
+    for (var i=1; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+    localStorage.setItem('data',JSON.stringify(data));
+
+    var retrievedObject = localStorage.getItem('data');
+
+    console.log('retrievedObject: ', JSON.parse(retrievedObject));
+    
+    
+    //console.log(data);
+    return data;
+}
+
+   // let data = tableToJson(table);
+
+    
+
+    //https://stackoverflow.com/questions/42020577/storing-objects-in-localstorage
+    </script>
+    </html>
+
+
+
