@@ -1,6 +1,9 @@
 <!DOCTYPE html>
     <html>
-    <body>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+ crossorigin="anonymous">
+
+
     <body>
       <button id="click">Click</button>
       <table id="myTable">
@@ -87,55 +90,29 @@
 </tbody>
 </table>
 
+<form class="row gy-2 gx-3 align-items-center">
+  <div class="col-auto">
+    <div class="input-group">
+      <div class="input-group-text">$</div>
+      <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Amount">
+    </div>
+  </div>
+  
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<span id="sumOfWeights"></span><p></p>
 
     </body>
 
     <script>
-      const btn = document.getElementById("click");
-      btn.addEventListener("click", function () {
-        tableToJson(table);
-      })
-      
-    let table = document.getElementById("myTable");
-    function tableToJson(table) {
-    var data = [];
-
-    // first row needs to be headers
-    var headers = [];
-    for (var i=0; i<table.rows[0].cells.length; i++) {
-        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
-    }
-
-    // go through cells
-    for (var i=1; i<table.rows.length; i++) {
-
-        var tableRow = table.rows[i];
-        var rowData = {};
-
-        for (var j=0; j<tableRow.cells.length; j++) {
-
-            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
-
-        }
-
-        data.push(rowData);
-    }       
-    localStorage.setItem('data',JSON.stringify(data));
-
-    var retrievedObject = localStorage.getItem('data');
-
-    console.log('retrievedObject: ', JSON.parse(retrievedObject));
     
     
-    //console.log(data);
-    return data;
-}
-
-   // let data = tableToJson(table);
-
     
-
-    //https://stackoverflow.com/questions/42020577/storing-objects-in-localstorage
+    
+    
     </script>
     </html>
 
