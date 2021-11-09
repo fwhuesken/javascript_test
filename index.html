@@ -6,7 +6,7 @@
       <table id="myTable">
 <thead>
   <tr>
-    <th>value</th>
+    <th>weight</th>
     <th>include</th>
   </tr>
 </thead>
@@ -37,24 +37,24 @@
     <script>
       const btn = document.getElementById("click");
       btn.addEventListener("click", function () {
-         smallestValue();
+         sumUpWeights();
       })
       
-       function smallestValue() {
-        let values = [];
-        const ele = document.getElementsByTagName('input');
-        let table = document.getElementById("myTable");
-        let trs = table.getElementsByTagName("tr");
-        for(  i = 0, len = trs.length; i < len; i++ ) {
-          if(ele[i].type=='checkbox' && ele[i].checked == true) {
-            values.push( parseFloat( trs[ i ].cells[ 0 ].innerHTML ) );
-          }
-        }
-      
-        let smallest = Math.min.apply( null, values );
-        console.log(smallest.toFixed(2))
-        return smallest.toFixed(2);
-          }
+       function sumUpWeights() {
+          const ele = document.getElementsByTagName('input');
+          let table = document.getElementById("myTable");
+          let tr = table.getElementsByTagName("tr");
+          let total = 0;
+            for(var i=1; i < ele.length; i++){
+              let td = tr[i].getElementsByTagName("td")[0];
+              let price = parseFloat(td.innerText);
+              if(ele[i].type=='checkbox' && ele[i].checked == true)
+                total += price;          
+        
+            }
+        console.log(total);
+        return total;
+      }
 
     </script>
     </html>
