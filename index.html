@@ -1,118 +1,61 @@
 <!DOCTYPE html>
     <html>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
- crossorigin="anonymous">
-
-
     <body>
-      <button id="click">Click</button>
+    <body>
+      
       <table id="myTable">
 <thead>
   <tr>
-    <th>Symbol</th>
-    <th>Name</th>
-    <th>Sector</th>
-    <th>Index weight</th>
-    <th>Custom ETF weight</th>
+    <th>value</th>
+    <th>include</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td>MMM</td>
-    <td>3M Company</td>
-    <td>Industrials</td>
-    <td>0.27923</td>
-    <td>12.81</td>
+    <td>1.1</td>
+    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
   </tr>
   <tr>
-    <td>AOS</td>
-    <td>A. O. Smith Corporation</td>
-    <td>Industrials</td>
-    <td>0.023004</td>
-    <td>1.06</td>
+    <td>2.2</td>
+    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
   </tr>
   <tr>
-    <td>ABMD</td>
-    <td>ABIOMED Inc.</td>
-    <td>Health Care</td>
-    <td>0.041127</td>
-    <td>1.89</td>
+    <td>3.3</td>
+    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
   </tr>
   <tr>
-    <td>AES</td>
-    <td>AES Corporation</td>
-    <td>Utilities</td>
-    <td>0.042265</td>
-    <td>1.94</td>
-  </tr>
-  <tr>
-    <td>AME</td>
-    <td>AMETEK Inc.</td>
-    <td>Industrials</td>
-    <td>0.078652</td>
-    <td>3.61</td>
-  </tr>
-  <tr>
-    <td>ANSS</td>
-    <td>ANSYS Inc.</td>
-    <td>Information Technology</td>
-    <td>0.080654</td>
-    <td>3.70</td>
-  </tr>
-  <tr>
-    <td>APA</td>
-    <td>APA Corp.</td>
-    <td>Energy</td>
-    <td>0.022934</td>
-    <td>1.05</td>
-  </tr>
-  <tr>
-    <td>T</td>
-    <td>AT&amp;T Inc.</td>
-    <td>Communication Services</td>
-    <td>0.529773</td>
-    <td>24.30</td>
-  </tr>
-  <tr>
-    <td>ABBV</td>
-    <td>AbbVie Inc.</td>
-    <td>Health Care</td>
-    <td>0.525005</td>
-    <td>24.08</td>
-  </tr>
-  <tr>
-    <td>ABT</td>
-    <td>Abbott Laboratories</td>
-    <td>Health Care</td>
-    <td>0.557323</td>
-    <td>25.57</td>
+    <td>4.4</td>
+    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
   </tr>
 </tbody>
 </table>
 
-<form class="row gy-2 gx-3 align-items-center">
-  <div class="col-auto">
-    <div class="input-group">
-      <div class="input-group-text">$</div>
-      <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Amount">
-    </div>
-  </div>
-  
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-</form>
-
-<span id="sumOfWeights"></span><p></p>
+<button id="click">Click</button>
 
     </body>
 
     <script>
-    
-    
-    
-    
-    
+      const btn = document.getElementById("click");
+      btn.addEventListener("click", function () {
+         smallestValue();
+      })
+      
+       function smallestValue() {
+        let values = [];
+        const ele = document.getElementsByTagName('input');
+        let table = document.getElementById("myTable");
+        let trs = table.getElementsByTagName("tr");
+        for(  i = 0, len = trs.length; i < len; i++ ) {
+          if(ele[i].type=='checkbox' && ele[i].checked == true) {
+            values.push( parseFloat( trs[ i ].cells[ 0 ].innerHTML ) );
+          }
+        }
+      
+        let smallest = Math.min.apply( null, values );
+        console.log(smallest.toFixed(2))
+        return smallest.toFixed(2);
+          }
+
     </script>
     </html>
 
