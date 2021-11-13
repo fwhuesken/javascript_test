@@ -30,31 +30,33 @@
 </tbody>
 </table>
 
-<button id="click">Click</button>
+<button id="click">Click</button><br>
+
 
     </body>
 
     <script>
-      const btn = document.getElementById("click");
-      btn.addEventListener("click", function () {
-         sumUpWeights();
-      })
       
-       function sumUpWeights() {
-          const ele = document.getElementsByTagName('input');
-          let table = document.getElementById("myTable");
-          let tr = table.getElementsByTagName("tr");
-          let total = 0;
-            for(var i=1; i < ele.length; i++){
-              let td = tr[i].getElementsByTagName("td")[0];
-              let price = parseFloat(td.innerText);
-              if(ele[i].type=='checkbox' && ele[i].checked == true)
-                total += price;          
-        
-            }
-        console.log(total);
-        return total;
-      }
+      
+       function smallestWeight() {
+        let values = [];
+        const ele = document.querySelectorAll(".myCheckbox");
+        let table = document.getElementById("myTable");
+        let trs = table.querySelectorAll("tbody tr");
+        for(  i = 0, len = trs.length; i < len; i++ ) {
+          if(ele[i].type=='checkbox' && ele[i].checked == true) {
+            values.push( parseFloat( trs[ i ].cells[ 0 ].innerHTML ) );
+          }
+        }
+        let smallest = Math.min.apply( null, values );
+        console.log(smallest);
+        return smallest;
+       } 
+
+       const btn = document.getElementById("click");
+      btn.addEventListener("click", function () {
+         smallestWeight();
+      })
 
     </script>
     </html>
