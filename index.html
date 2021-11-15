@@ -1,62 +1,30 @@
 <!DOCTYPE html>
-    <html>
+<html>
     <body>
-    <body>
+        <span>Minimum amount: 100</span><br>
+  
+        <input type="number" id="amount">
+        <button id="buy" disabled>Buy</button>
       
-      <table id="myTable">
-<thead>
-  <tr>
-    <th>weight</th>
-    <th>include</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>1.1</td>
-    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
-  </tr>
-  <tr>
-    <td>2.2</td>
-    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
-  </tr>
-  <tr>
-    <td>3.3</td>
-    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
-  </tr>
-  <tr>
-    <td>4.4</td>
-    <td><input type="checkbox" class="myCheckbox" id="include" value="include" checked></td>
-  </tr>
-</tbody>
-</table>
+      
 
-<button id="click">Click</button><br>
+
 
 
     </body>
 
     <script>
-      
-      
-       function smallestWeight() {
-        let values = [];
-        const ele = document.querySelectorAll(".myCheckbox");
-        let table = document.getElementById("myTable");
-        let trs = table.querySelectorAll("tbody tr");
-        for(  i = 0, len = trs.length; i < len; i++ ) {
-          if(ele[i].type=='checkbox' && ele[i].checked == true) {
-            values.push( parseFloat( trs[ i ].cells[ 0 ].innerHTML ) );
-          }
-        }
-        let smallest = Math.min.apply( null, values );
-        console.log(smallest);
-        return smallest;
-       } 
+      const buyBtn = document.getElementById("buy");
+      const amount = document.getElementById("amount");
 
-       const btn = document.getElementById("click");
-      btn.addEventListener("click", function () {
-         smallestWeight();
+      amount.addEventListener("change", function() {
+        let amountValue = amount.value;
+        let minAmount = 100;
+        if(minAmount <= amountValue)
+          buyBtn.disabled = false;
       })
+      
+  
 
     </script>
     </html>
